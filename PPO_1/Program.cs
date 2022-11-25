@@ -8,7 +8,7 @@ namespace PPO_1
         {
             Console.WriteLine("Hello World!");
             Ułamek pierwszy = new Ułamek(1, 2);
-
+            // testowa zmiana
         }
     }
 }
