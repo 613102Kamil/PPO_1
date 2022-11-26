@@ -9,32 +9,27 @@ namespace PPO_1
         private int _licznik;
         private int _mianownik;
         private static int _calosci;
-        private static int _reszta;
-            private static int _nwd;
+
         public Ułamek(int licznik, int mianownik)
         {
             _licznik = licznik;
             _mianownik = mianownik;
+            
         }
 
         public void skroc ()
         {
             int nwd = Narzędzia.NWD(_licznik, _mianownik);
-            _nwd = nwd;
-       //     if (nwd != 1) // jak jest inne niz 1, bo bez sensu dzielić przez 1
-        //    {
-                if (_licznik/_mianownik == 1) // brak reszty
-                {
-                    _reszta = 0;
-                }
-                else
-                {
-                    _reszta = 1;
-                }
-                _calosci = _licznik / _mianownik;
-                _licznik /= nwd;
-                _mianownik /= nwd;
-         //   }
+            _calosci = _licznik / _mianownik;
+            
+            _mianownik /= nwd;
+            _licznik /= nwd;
+            if (_mianownik < 0)
+            {
+                _mianownik *= -1;
+                _licznik *= -1;
+            }
+
         }
 
         public Ułamek(string licznik_i_mianownik)
@@ -56,13 +51,8 @@ namespace PPO_1
                 bool parse_drugi = int.TryParse(drugie, out temp2);
                 if (parse_pierwszy && parse_drugi)
                 { // udało się przekonwertować string na dwa inty
-                    
-                    
                     _licznik = temp1;
                     _mianownik = temp2;
-                    
-                    Console.WriteLine($"Odczytałem wpisany ułamek to {_licznik} / {_mianownik}.");
-                    
                 }
                 else
                 { // nie udało się
@@ -107,20 +97,12 @@ namespace PPO_1
 
         public override string ToString()
         {
+           // return $"nwd= {_nwd} calosci: {_calosci}   ulamek: {_licznik}/{_mianownik}";
             skroc();
-
-          //  return $"nwd= {_nwd} calosci: {_calosci}   ulamek: {_licznik}/{_mianownik}";
-
-            if (_calosci > 0)
-            {
-                if (_reszta == 1)
-                {
-                    int tmp= _licznik - (_calosci * _mianownik);
-                    return $"{_calosci}  {tmp}/{_mianownik}";
-                } else
-                    return $"{_calosci}";
-            } else
-            return $"{_licznik}/{_mianownik}";
+            if (_calosci>0)
+                return $"{_calosci} [{( _licznik-(_calosci*_mianownik) )} / {_mianownik}]";
+            else
+                return $"{_licznik} / {_mianownik}";
         }
     }
 }
