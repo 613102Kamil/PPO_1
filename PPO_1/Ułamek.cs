@@ -97,12 +97,31 @@ namespace PPO_1
 
         public override string ToString()
         {
-           // return $"nwd= {_nwd} calosci: {_calosci}   ulamek: {_licznik}/{_mianownik}";
+            // return $"nwd= {_nwd} calosci: {_calosci}   ulamek: {_licznik}/{_mianownik}";
             skroc();
-            if (_calosci>0)
-                return $"{_calosci} [{( _licznik-(_calosci*_mianownik) )} / {_mianownik}]";
+            if (_calosci > 0)
+            { 
+               
+                if ((_licznik - (_calosci * _mianownik)) != 0)
+                {
+                    return $"{_calosci} [{_licznik - (_calosci * _mianownik)} / {_mianownik}]";
+                }
+                else
+                {
+                    return $"{_calosci}";
+                }
+            }
             else if (_calosci < 0)
-                return $"{_calosci} [{-1*(_licznik - (_calosci * _mianownik))} / {_mianownik}]";
+            {
+                if ((-1 * (_licznik - (_calosci * _mianownik))) != 0)
+                {
+                    return $"{_calosci} [{-1 * (_licznik - (_calosci * _mianownik))} / {_mianownik}]";
+                } 
+                else
+                {
+                    return $"{_calosci}";
+                }
+            }
             else
                 return $"{_licznik} / {_mianownik}";
         }
