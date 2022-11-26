@@ -10,7 +10,7 @@ namespace PPO_1
             int l2 = 3;
             Console.WriteLine("Hello World!");
           //  var a = new Ułamek(5, 4);
-            var b = new Ułamek(1, 2);
+            var b = new Ułamek(-10, 2);
             var a = new Ułamek("5/4");
             // var c = new Ułamek("2/2");
 

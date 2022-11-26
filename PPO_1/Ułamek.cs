@@ -101,6 +101,8 @@ namespace PPO_1
             skroc();
             if (_calosci>0)
                 return $"{_calosci} [{( _licznik-(_calosci*_mianownik) )} / {_mianownik}]";
+            else if (_calosci < 0)
+                return $"{_calosci} [{-1*(_licznik - (_calosci * _mianownik))} / {_mianownik}]";
             else
                 return $"{_licznik} / {_mianownik}";
         }
